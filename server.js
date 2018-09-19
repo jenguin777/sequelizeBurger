@@ -5,7 +5,7 @@ var PORT = process.env.PORT || 8085;
 
 var app = express();
 // go use index.js to fetch all models (all .js files) in the models folder and put them in the db.
-var db = require("/models");
+var db = require("./models");
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
@@ -23,9 +23,9 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
-var routes = require("./routes/api-routes.js");
+require("./routes/api-routes.js")(app);
 
-app.use('/', routes);
+
 
 db.sequelize.sync({
   logging: console.log
