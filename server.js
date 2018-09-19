@@ -5,7 +5,7 @@ var PORT = process.env.PORT || 8085;
 
 var app = express();
 // go use index.js to fetch all models (all .js files) in the models folder and put them in the db.
-var db = require("./models");
+var db = require("/models");
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
