@@ -1,0 +1,36 @@
+body {
+    background-image: url("/assets/img/restaurant.png");
+ }
+
+ .container {
+     width: 90%;
+ }
+
+ .card {
+     width: 600px;
+ }
+
+.card-image {
+    width: 30%;
+    height: 100%;
+}
+
+ label {
+     color: black;
+     font-size: 20px;
+ }
+
+ span {
+    font-size: 30px !important;
+ }
+
+ li {
+     padding: 1px;
+ }
+
+ #github {
+    width: 100%;
+    color: black;
+    font-size: 18px;
+ }
+ 
