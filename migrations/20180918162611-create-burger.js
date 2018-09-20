@@ -8,16 +8,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
+      burger_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          len: [1,35]
+        }
       },
       devoured: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull:false,
+        defaultValue: false
       },
-      toppings: {
-        type: Sequelize.STRING
-      }, 
-      createdAt: {
+        createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },

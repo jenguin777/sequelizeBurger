@@ -26,9 +26,9 @@ module.exports = function(app) {
   // If we want something to be guaranteed to happen after the query, we'll use
   // the .then function
   app.get("/", function(req, res) {
-        db.burger.findAll({}).then(function(results){
+        db.Burger.findAll({}).then(function(results){
             // results are available to us inside the .then
-            res.json(results);
+            res.render("index");
         }).catch(function(error) {
             throw error;
         }); 
@@ -47,7 +47,7 @@ module.exports = function(app) {
             console.log("Burger Data: ");
             console.log(req.body);
 
-            db.burger.create({
+            db.Burger.create({
             burger_name: req.body.name,
             created_at: req.body.created_at
             }).then(function(results) {
@@ -59,7 +59,7 @@ module.exports = function(app) {
   // models.user.update({ venue_ids: venueIds },{where:{id: id }}).then( result => { res.json(result)});
 
   app.put("/api/burgers/:id", function(req, res) {
-        db.burger.update({
+        db.Burger.update({
             devoured: req.body.devoured  
         }, {where: {id: req.body.id }
         })
