@@ -26,13 +26,13 @@ app.set("view engine", "handlebars");
 require("./routes/api-routes.js")(app);
 
 // force true, table will be dropped (along with data) and recreated (no data)
-db.sequelize.sync({ force: true })
-.then(function() {
+// db.sequelize.sync({ force: true })
+// .then(function() {
 
 // force false, use this once you know you don't want to drop the table  
-// db.sequelize.sync({
-//   logging: console.log
-// }).then(function(){
+db.sequelize.sync({
+  logging: console.log
+}).then(function(){
 
   // Start our server so that it can begin listening to client requests.
   app.listen(PORT, function() {
