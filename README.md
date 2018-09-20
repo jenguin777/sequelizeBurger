@@ -12,6 +12,8 @@
 
 * Implemented client-side, server-side, and database validation for "burger name cannot be null" and "burger name must be between 1 and 35 characters".
 
+* Implemented Sequelize-CLI migration
+
 # Technologies Used
 * Sequelize
 * Node.js
