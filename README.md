@@ -22,9 +22,6 @@
 * Javascript / jQuery
 * Materialize
 
-# Techniques / Conventions
-* ORM
-
 # To run the application
 Just run "npm install" in a terminal window after cloning the project. The required packages will be fetched from the package.json file and installed on your machine. Or you can see a deployed version [here.](https://fast-spire-44540.herokuapp.com/)
 
