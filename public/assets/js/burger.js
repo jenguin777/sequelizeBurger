@@ -13,19 +13,6 @@ $(function() {
         id: id,
         devoured: newDevoured
       };
-  
-      // // Send the PUT request...had trouble with this...tried $.post and it worked
-      // $.post("/api/update/burgers/", 
-      // //   $.ajax("/api/burgers/" + id, {
-      //   newDevouredState
-      // ).then(
-      //   function(response) {
-      //     console.log("changed devoured to", newDevouredState);
-      //    console.log(response ,"This is the response back");
-      //     // Reload the page to get the updated list
-      //     location.reload();
-      //   }
-      // );
 
       // Send the PUT request
       $.ajax("/api/burgers/" + id, {
@@ -39,9 +26,6 @@ $(function() {
         location.reload();
       }
 );
-
-
-
 
 
     });

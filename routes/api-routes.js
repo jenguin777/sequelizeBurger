@@ -28,7 +28,16 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
         db.Burger.findAll({}).then(function(results){
             // results are available to us inside the .then
-            res.render("index");
+
+            var hbsObject = {
+                burgers: results
+              };
+              console.log(hbsObject);
+              res.render("index", hbsObject);
+            
+
+            console.log("hbsObject: " + JSON.stringify(hbsObject));
+            // res.render("index",{burgers: results});
         }).catch(function(error) {
             throw error;
         }); 
@@ -52,12 +61,13 @@ module.exports = function(app) {
             created_at: req.body.created_at
             }).then(function(results) {
             // `results` here would be the newly created burger
-            res.end();
+            // Send back the ID of the new burger
+            console.log("results: " + results);
+            res.json({ id: results.insertId });
             });
         }
   });
-  // models.user.update({ venue_ids: venueIds },{where:{id: id }}).then( result => { res.json(result)});
-
+  
   app.put("/api/burgers/:id", function(req, res) {
         db.Burger.update({
             devoured: req.body.devoured  
