@@ -20,13 +20,10 @@ $(function() {
         data: newDevouredState
       }).then(
         function(response) {
-        console.log("changed devoured to", newDevouredState);
-        console.log(response ,"This is the response back");
         // Reload the page to get the updated list
         location.reload();
       }
 );
-
 
     });
   
@@ -34,12 +31,9 @@ $(function() {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
       var newBurger;
-
       var enteredName =  $("#burger-id").val().trim();
-      console.log("enteredName: " + enteredName);
       var enteredNameLength = $("#burger-id").val().length;
-      console.log("enteredNameLength: " + enteredNameLength);
-
+      
       // add client side validation for 1) not null and 2) > 35 chars - the database allows 35 as well
       if(enteredName === '' || enteredNameLength > 35) {
 

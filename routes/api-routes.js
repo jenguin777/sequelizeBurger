@@ -5,11 +5,6 @@
 // Dependencies
 // =============================================================
 
-// Import the model (burgerModel.js) to use its database functions.
-// var Burger = require("../models/burgerModel.js");
-
-//---------do I need both of these???? I don't think I need the one above...think the one below will pull in all.
-
 // go use index.js to fetch all models (all .js files) in the models folder and put them in the db.
 var db = require("../models");
 var express = require('express');
@@ -26,16 +21,9 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
         db.Burger.findAll({}).then(function(results){
             // results are available to us inside the .then
-            console.log("results: " + results);
-            var hbsObject = {
-                burgers: results
-              };
-              console.log(hbsObject);
-              res.render("index", hbsObject);
             
-
-            console.log("hbsObject: " + JSON.stringify(hbsObject));
-            // res.render("index",{burgers: results});
+            res.render("index", { burgers: results });
+            
         }).catch(function(error) {
             throw error;
         }); 
@@ -45,22 +33,17 @@ module.exports = function(app) {
   app.post("/api/burgers", function(req, res) {
 
         // adding server-side validation for burger_name not null and burger_name < 36 chars
-        console.log("req object: " + req.body.name);
         if(req.body.name === '' || req.body.name.length > 35) {
-        //   return res.status(404).end();
+        
         return res.status(404).json('name validation failed').end();
         } else { // if it passes validation, insert the burger
-
-            console.log("Burger Data: ");
-            console.log(req.body);
 
             db.Burger.create({
             burger_name: req.body.name,
             created_at: req.body.created_at
             }).then(function(results) {
-            // `results` here would be the newly created burger
             // Send back the ID of the new burger
-            console.log("results: " + results);
+           
             res.json({ id: results.insertId });
             });
         }
@@ -75,7 +58,7 @@ module.exports = function(app) {
         }, {where: {id: req.body.id }
         })
         .then(function(results){
-                if (result.changedRows == 0) {
+                if (results.changedRows == 0) {
                     // If no rows were changed, then the ID must not exist, so 404
                     return res.status(404).end();
                 } else {
