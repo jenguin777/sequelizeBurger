@@ -18,8 +18,6 @@ var express = require('express');
 // =============================================================
 module.exports = function(app) {
 
-    
-
 // Create all our routes and set up logic within those routes where required.
   // Finding all Burgers, and then returning them to the user as JSON.
   // Sequelize queries are asynchronous, which helps with perceived speed.
@@ -28,7 +26,7 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
         db.Burger.findAll({}).then(function(results){
             // results are available to us inside the .then
-
+            console.log("results: " + results);
             var hbsObject = {
                 burgers: results
               };
@@ -69,6 +67,9 @@ module.exports = function(app) {
   });
   
   app.put("/api/burgers/:id", function(req, res) {
+
+    console.log("req.params.id: " + req.params.id);
+
         db.Burger.update({
             devoured: req.body.devoured  
         }, {where: {id: req.body.id }
